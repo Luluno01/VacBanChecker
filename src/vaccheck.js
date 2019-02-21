@@ -57,6 +57,30 @@ var styles =
   'overflow:hidden;' +
 '}';
 
+const _STRING = {
+  schinese: {
+    OW_BAN: '个监管封禁',
+    VAC_BAN: '个VAC封禁',
+    LAST_BAN: '天前'
+  },
+  english: {
+    OW_BAN: ' OW bans',
+    VAC_BAN: ' VAC bans',
+    LAST_BAN: ' days ago'
+  }
+}
+
+function getLanguage() {
+  var res = document.cookie.match(/\s?Steam_Language=(\w+)\s?/)；
+  if(res && res[1]) return res[1]
+  else return null
+}
+const LANG = getLanguage() || 'english';
+const STRING = (function() {
+  if(!(LANG in _STRING)) LANG = 'english';
+  return STRING[LANG];
+})();
+
 function setVACStatus(player) {
   var playerEl = lookup[player.SteamId];
   var span = document.createElement('span');
@@ -66,14 +90,14 @@ function setVACStatus(player) {
     var inner = '';
 
     if (player.NumberOfGameBans) {
-      inner += '<div>' + player.NumberOfGameBans + ' OW bans</div>';
+      inner += '<div>' + player.NumberOfGameBans + STRING.OW_BAN + '</div>';
     }
 
     if (player.NumberOfVACBans) {
-      inner += '<div>' + player.NumberOfVACBans + ' VAC bans</div>';
+      inner += '<div>' + player.NumberOfVACBans + STRING.VAC_BAN + '</div>';
     }
 
-    inner += '<div>' + player.DaysSinceLastBan + ' days ago</div>';
+    inner += '<div>' + player.DaysSinceLastBan + STRING.LAST_BAN + '</div>';
 
     span.classList.add('dirty');
     span.innerHTML = inner;
