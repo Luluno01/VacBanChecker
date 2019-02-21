@@ -57,7 +57,7 @@ var styles =
   'overflow:hidden;' +
 '}';
 
-const _STRING = {
+var _STRING = {
   schinese: {
     OW_BAN: '个监管封禁',
     VAC_BAN: '个VAC封禁',
@@ -71,12 +71,12 @@ const _STRING = {
 }
 
 function getLanguage() {
-  var res = document.cookie.match(/\s?Steam_Language=(\w+)\s?/)；
-  if(res && res[1]) return res[1]
-  else return null
+  var res = document.cookie.match(/\s?Steam_Language=(\w+)\s?/);
+  if(res && res[1]) return res[1];
+  else return null;
 }
-const LANG = getLanguage() || 'english';
-const STRING = (function() {
+var LANG = getLanguage() || 'english';
+var STRING = (function() {
   if(!(LANG in _STRING)) LANG = 'english';
   return STRING[LANG];
 })();
