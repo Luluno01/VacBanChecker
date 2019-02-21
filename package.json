@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/MrHayato/VacBanChecker#readme",
   "devDependencies": {
-    "uglify-js": "^3.4.3"
+    "uglify-js": "^3.4.9"
   }
 }

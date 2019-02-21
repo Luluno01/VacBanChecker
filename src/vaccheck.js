@@ -78,7 +78,7 @@ function getLanguage() {
 var LANG = getLanguage() || 'english';
 var STRING = (function() {
   if(!(LANG in _STRING)) LANG = 'english';
-  return STRING[LANG];
+  return _STRING[LANG];
 })();
 
 function setVACStatus(player) {
